@@ -1,11 +1,22 @@
 import React from 'react';
+import basicStyles from '../styles/assets/main.scss'
+import logo from '../img/logo.png'
+import Slider from "react-slick";
 import styles from '../scss/Header.scss'
-import { Nav, Form, Button, Navbar, FormControl } from 'react-bootstrap'
-import Logo from '../img/logo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const Header = () => {
+const Header = React.memo(({dishes}) => {
     return (
-        <div styleName={styles.block}>Hello world</div>
+            <div className={basicStyles.wrapper}>
+                <nav className={styles.nav}>
+                    <ul>
+                        <li><img src={logo} alt="Logo"/></li>
+                        <li><button>category</button></li>
+                        <li><button>search</button></li>
+                        <li><button>likes</button></li>
+                        <li><button>create</button></li>
+                        <li><button>log</button></li>
+                    </ul>
+                </nav>
+            </div>
     )
-}
+});
 export default Header;

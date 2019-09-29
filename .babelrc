@@ -3,16 +3,14 @@
     "@babel/preset-env",
     "@babel/preset-react"
   ],
-  "plugins": [
-    [
-      "react-css-modules",
-      {
-        "filetypes": {
-          ".scss": {
-            "syntax": "scss"
-          }
-        }
-      }
-    ]
-  ]
+  // "plugins": [
+  //   [
+  //     "react-css-modules",
+  //     // {
+  //     //   "filetypes": {
+  //     //   "syntax": "postcss-scss"
+  //     //   }
+  //     // }
+  //   ]
+  // ]
 }

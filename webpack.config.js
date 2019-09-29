@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -10,6 +10,7 @@ module.exports = {
     filename: "index-bundle.js"
   },
   devServer: {
+    publicPath: "/",
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000
@@ -24,15 +25,14 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { sourceMap: true }
+            options: { sourceMap: true, modules: true,}
           },
           {
             loader: 'postcss-loader',
-            options: { sourceMap: true, config: { path: './postcss.config.js' } }
+            options: { sourceMap: true,  modules: true,config: { path: './postcss.config.js' } }
           },
           {
             loader: 'sass-loader',
@@ -51,17 +51,27 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { sourceMap: true }
+            options: { modules: true,sourceMap: true }
           },
           {
             loader: 'postcss-loader',
-            options: { sourceMap: true, config: { path: './src/js/postcss.config.js' } }
+            options: { sourceMap: true, modules: true, config: { path: './src/js/postcss.config.js' } }
           }
         ],
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader?name=./assets/fonts/webfonts/[name].[ext]'
+          },
+          {
+            loader: 'file-loader?name=./assets/fonts/Roboto/[name].[ext]'
+          }
+        ]
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -90,7 +100,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
-    // new CleanWebpackPlugin(['dist'])
+    // new CleanWebpackPlugin()
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx']

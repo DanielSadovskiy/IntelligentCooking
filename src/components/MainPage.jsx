@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios'
 import Header from '../containers/Header';
+import Recommended from "../containers/Recommended";
+import CategoriesSlider from "../containers/CategoriesSlider";
+import styles from "../styles/assets/main.scss"
+import AllRecipes from "../containers/AllRecipes";
 
-class App extends Component {
-  componentDidMount() {
-    const { setDishes } = this.props;
-    axios.get('/dishes.json')
-      .then(response => {
-        console.log(response.data)
-        setDishes(response.data)
-      })
 
-  }
-  render() {
-    const { dishes } = this.props;
-    return (
+class App extends PureComponent  {
+    componentDidMount() {
+        const { setDishes } = this.props;
+        axios.get('/dishes.json')
+            .then(response => {
+                setDishes(response.data)
+            })
 
-      <div className="container">
-        <Header />
-        <p>{dishes.length}</p>
-        <img src="../img/logo.png" alt="hello"/>
-      </div>
-    );
-  }
+    }
+    render() {
+
+        return (
+            <div className={styles.container}>
+                <Header/>
+                <Recommended/>
+                <CategoriesSlider/>
+                <AllRecipes/>
+            </div>
+        );
+    }
 }
 export default App;

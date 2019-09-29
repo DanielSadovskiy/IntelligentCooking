@@ -11,6 +11,12 @@ export const dishes = (state = initialState, action) => {
                 dishes: action.payload,
                 isLoading: false
             };
+        case 'SORT_BY':
+            return {
+                ...state,
+                dishes: [...state.dishes],
+                sortedItem : action.payload
+            }
         default:
             return state;
     }

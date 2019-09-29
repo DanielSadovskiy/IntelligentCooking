@@ -1,4 +1,4 @@
-@import "./partials//vars.scss";
+@import "./partials/vars.scss";
 @import "./partials/reset.scss";
 @import "./partials/mixins.scss";
 
@@ -26,7 +26,7 @@ body {
   font-weight: $mainFontWeight;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $warning-color;
+  background: $danger-color;
 }
 
 *, *:before, *:after { box-sizing: border-box; }
@@ -59,17 +59,15 @@ section, .section {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  min-height: 100vh;
 }
 
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .container {
-  width: 100%;
+  width: 86%;
   flex: 0 0 auto;
   position: relative;
   margin: 0 auto;
